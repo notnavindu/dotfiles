@@ -1,7 +1,23 @@
 return {
+  "nvim-lua/plenary.nvim",
+
+  {
+    "nvchad/ui",
+    config = function()
+      require "nvchad"
+    end,
+  },
+
+  {
+    "nvchad/base46",
+    lazy = true,
+    build = function()
+      require("base46").load_all_highlights()
+    end,
+  },
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     config = function()
       require "configs.conform"
     end,
@@ -17,13 +33,17 @@ return {
   },
 
   {
-  	"williamboman/mason.nvim",
-  	opts = {
-  		ensure_installed = {
-  			"lua-language-server", "stylua",
-  			"html-lsp", "css-lsp" , "prettier"
-  		},
-  	},
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "lua-language-server",
+        "stylua",
+        "html-lsp",
+        "css-lsp",
+        "prettier",
+        "tailwindcss-language-server",
+      },
+    },
   },
 
   -- {
@@ -43,32 +63,40 @@ return {
       {
         "<leader>fj",
         desc = "Hop Words",
-        function ()
+        function()
           require("hop").hint_words()
-        end
-      }
+        end,
+      },
     },
-    config = function ()
+    config = function()
       require("hop").setup()
-    end
+    end,
   },
   -- WINDOW
   {
     "anuvyklack/windows.nvim",
     dependencies = {
       "anuvyklack/middleclass",
-      "anuvyklack/animation.nvim"
+      "anuvyklack/animation.nvim",
     },
     config = function()
       vim.o.winwidth = 5
       vim.o.winminwidth = 5
       vim.o.equalalways = false
-      require('windows').setup({
+      require("windows").setup {
         winwidth = 5,
-        winminwidth = 5
-      })
-    end
-  }
+        winminwidth = 5,
+      }
+    end,
+  },
+
+  -- nv volt
+  { "nvchad/volt", lazy = true },
+
+  {
+    "nvchad/minty",
+    cmd = { "Shades", "Huefy" },
+  },
 }
 
 -- Others
