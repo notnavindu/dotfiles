@@ -20,7 +20,7 @@ M.ui = {
 }
 
 M.base46 = {
-  theme = "pastelDark",
+  theme = "catppuccin",
 }
 
 return M
